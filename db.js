@@ -4,18 +4,18 @@ const mysql = require('mysql');
 class db {
     constructor() {
         this.pool = new Pool({
-            host: '#####',
-            user: '#####',
-            password: '#####',
-            port: 666,
-            database: '#####'
+            host: '####',
+            user: '####',
+            password: '####',
+            port: "####",
+            database: '####'
         });
-        
+
         this.connection = mysql.createConnection({
-            host: '#####',
-            user: '#####',
-            password: '#####',
-            database: '#####'
+            host: '####',
+            user: '####',
+            password: '####',
+            database: '####'
         });
     }
     bringPool() {

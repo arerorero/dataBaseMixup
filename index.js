@@ -1,5 +1,4 @@
 const db = require('./db');
-const { promise } = require('selenium-webdriver');
 const database = new db();
 const connection = database.bringCon();
 const pool = database.bringPool();
@@ -28,7 +27,6 @@ classesNoDta = [
 ]
 
 async function getRowCount(consulta1, date) {
-  let ncountrow;
   return await (new Promise((resolve, reject) => {
     ncountrow = connection.query(consulta1, date, (error, results) => {
       if (error) {
@@ -41,8 +39,8 @@ async function getRowCount(consulta1, date) {
 }
 async function deleteData(classVar, x) {
 
-  fillable = new classVar(); 
-  notfillable = fillable.getNot(); 
+  fillable = new classVar();
+  notfillable = fillable.getNot();
 
   currentDate = new Date();
   otherDate = new Date();
@@ -52,7 +50,7 @@ async function deleteData(classVar, x) {
   otherDate = otherDate.toISOString().split('T')[0];
   date = [otherDate, currentDate];
   console.log(date)
-  
+
   try {
     switch (notfillable) {
       case 'tab_nota_fiscal_saida':
@@ -167,13 +165,12 @@ async function insertInto(classVar, x) {
   otherDate = otherDate.toISOString().split('T')[0];
 
 
-  classTable = new classVar()  
+
+  classTable = new classVar() 
   orderby = classTable.getOrderby();
   notfillable = classTable.getNot(); 
   fillable = classTable.getFillable(); 
   fillableString = fillable.slice(0).join(","); 
-
-
   try {
     switch (notfillable) {
       case 'tab_nota_fiscal_saida':
@@ -222,7 +219,6 @@ async function insertInto(classVar, x) {
           valores = [offset];
           break;
       }
-   
       resultado = await (new Promise((resolve, reject) => {
         pool.query(consulta5, valores, (error, results) => {
           if (error) {
